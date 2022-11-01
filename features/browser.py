@@ -13,5 +13,8 @@ class Browser:
     def get_current_url(self):
         return self.driver.current_url
 
+    def check_url(self, expected_url):
+        assert self.driver.current_url == expected_url
+
     def close(self):
         self.driver.quit()

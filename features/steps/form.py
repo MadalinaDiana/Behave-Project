@@ -10,6 +10,8 @@ def step_impl(context):
 def step_impl(context):
     context.form_page.input_first_name("Adela")
     # aici as mai apela metode de completare a formului
+    context.form_page.clean_first_name()
+    context.form_page.click_components_menu()
 
 
 @When("I click Submit")
@@ -19,7 +21,10 @@ def step_impl(context):
 
 @Then("I am redirected to the Thanks page")
 def step_impl(context):
-    assert context.browser.get_current_url() == context.thanks_page.URL
+    # Expected URL = cel al paginii de Thank you
+    expected_url = context.thanks_page.URL
+    context.browser.check_url(expected_url)
+    # assert context.browser.get_current_url() == context.thanks_page.URL
 
 
 @Then("I get a success message")
